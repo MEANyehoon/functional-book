@@ -2,7 +2,7 @@ const { construct } =  require('../cat')
 
 const _  = require('underscore');
 
-function project(table/**, ...keys | key[]*/) {
+function project(table /**, ...keys | key[]*/) {
     var args = _.toArray(arguments);
     return _.map(table, function(obj) {
         return _.pick.apply(null, construct(obj, _.rest(args)));

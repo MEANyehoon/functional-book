@@ -1,5 +1,9 @@
 const _ = require('underscore');
 const { project, rename, as } = require('./index');
+const { finder, best } = require('./finder');
+const { rCurry } = require('../utils');
+
+const plucker = field => obj => obj && obj[field];
 
 const library = [{
     title: 'SICP',
@@ -38,22 +42,12 @@ const library = [{
 // ==> [ { abcd: 1 }, { abcd: 2 }, { abcd: 1 } ]
 
 
+// console.log(finder(_.identity, Math.max, [1,2,3,4,5])); 
+// ==> 5
 
-function allOf() {
-    return !!_.reduce(_.toArray(arguments), function(ret, arg) {
-        if (ret){
-            ret = (arg instanceof Function) ? arg() : arg;
-        } 
-        return ret;
+// console.log(finder(plucker('ed'), (x, y) => x > y ? x : y, library));
+// ==> { title: 'SICP', Isbn: '0262510871', ed: 2 }
 
-    }, true);
-}
 
-function A() {
-    return true;
-}
-function B() {
-    return false;
-}
-
-console.log(allOf(A,0,A,A));
+// console.log(best((x, y) => x.ed > y.ed, library));
+// ==> { title: 'SICP', Isbn: '0262510871', ed: 2 }

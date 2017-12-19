@@ -18,6 +18,14 @@ const { cat, construct, mapcat, interpose }  = require('./cat');
 // executeIfHasField({foo: 1}, 'foo');
 // executeIfHasField([1,2,3], 'abc');
 
+// function A() {
+//     return true;
+// }
+// function B() {
+//     return false;
+// }
+// console.log(allOf(A,0,A,A));    // => false
+// console.log(allOf(A,1,A,A));    // => true
 
 
 /**
